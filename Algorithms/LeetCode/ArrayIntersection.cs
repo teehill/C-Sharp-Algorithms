@@ -8,17 +8,27 @@ namespace Algorithms.Numeric
         public static int[] Intersection(int[] nums1, int[] nums2)
         {
             var intersection = new List<int>();
-            var larger = new HashSet<int>();
-            var smaller = new HashSet<int>();
+            var nums1set = new HashSet<int>(nums1);
+            var nums2set = new HashSet<int>(nums2);
 
-            larger = nums1.Length > nums2.Length ? nums1.ToHashSet<int>() : nums2.ToHashSet<int>();
-            smaller = nums1.Length < nums2.Length ? nums1.ToHashSet<int>() : nums2.ToHashSet<int>();
+            HashSet<int> larger, smaller;
 
-            foreach (var smol in smaller)
+            if (nums1set.Count() > nums1set.Count())
             {
-                if (larger.Contains(smol))
+                larger = nums1set;
+                smaller = nums2set;
+            }
+            else
+            {
+                larger = nums2set;
+                smaller = nums1set;
+            }
+
+            foreach (var smallValue in smaller)
+            {
+                if (larger.Contains(smallValue))
                 {
-                    intersection.Add(smol);
+                    intersection.Add(smallValue);
                 }
             }
 
