@@ -35,7 +35,7 @@ namespace Algorithms.LeetCode
         }
     }
 
-    struct CharacterCount
+    class CharacterCount
     {
         public int Count { get; set; }
         public int Index { get; set; }
