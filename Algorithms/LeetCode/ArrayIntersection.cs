@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Algorithms.Numeric
+namespace Algorithms.LeetCode
 {
-    public static class Solution
+    public static class ArrayIntersection
     {
         public static int[] Intersection(int[] nums1, int[] nums2)
         {
