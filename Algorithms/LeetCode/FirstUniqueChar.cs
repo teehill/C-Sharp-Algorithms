@@ -6,31 +6,38 @@ namespace Algorithms.LeetCode
     {
         public static int FirstUniqChar(string s)
         {
-            var uniqueChars = new Dictionary<char, int>();
-            var charHash = new HashSet<char>();
+            var charMap = new Dictionary<char, CharacterCount>();
 
             for (int i = 0; i < s.Length; i++)
             {
-                if (charHash.Add(s[i]))
+                if (charMap.ContainsKey(s[i]))
                 {
-                    uniqueChars.Add(s[i], i);
+                    charMap[s[i]].Count++;
                 }
                 else
                 {
-                    uniqueChars.Remove(s[i]);
+                    charMap[s[i]] = new CharacterCount { Count = 1, Index = i };
                 }
-
             }
 
-            var minimumIndex = -1;
-
-            foreach (var c in uniqueChars)
+            foreach (var c in s)
             {
-                if (c.Value < minimumIndex || minimumIndex == -1)
-                    minimumIndex = c.Value;
+                if (charMap.ContainsKey(c))
+                {
+                    if (charMap[c].Count == 1)
+                    {
+                        return charMap[c].Index;
+                    }
+                }
             }
 
-            return minimumIndex;
+            return -1;
         }
+    }
+
+    struct CharacterCount
+    {
+        public int Count { get; set; }
+        public int Index { get; set; }
     }
 }
