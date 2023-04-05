@@ -8,20 +8,18 @@ namespace Algorithms.LeetCode
         public static int[] Intersection(int[] nums1, int[] nums2)
         {
             var intersection = new List<int>();
-            var nums1set = new HashSet<int>(nums1);
-            var nums2set = new HashSet<int>(nums2);
 
             HashSet<int> larger, smaller;
 
-            if (nums1set.Count() > nums1set.Count())
+            if (nums1.Count() > nums2.Count())
             {
-                larger = nums1set;
-                smaller = nums2set;
+                larger = new HashSet<int>(nums1);
+                smaller = new HashSet<int>(nums2);
             }
             else
             {
-                larger = nums2set;
-                smaller = nums1set;
+                larger = new HashSet<int>(nums2);
+                smaller = new HashSet<int>(nums1);
             }
 
             foreach (var smallValue in smaller)
