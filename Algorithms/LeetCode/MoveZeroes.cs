@@ -6,22 +6,23 @@ namespace Algorithms.LeetCode
     {
         public static int[] MoveZeroesToEnd(int[] nums)
         {
-            var nonZeroIndex = 0;
+            var zeroIndex = -1;        
 
-            //move all non-zeroes to front of array, tracked with nonZeroIndex
             for (var i = 0; i < nums.Length; i++)
             {
                 if (nums[i] != 0)
                 {
-                    nums[nonZeroIndex] = nums[i];
-                    nonZeroIndex++;
+                    if (zeroIndex > -1)
+                    {
+                        (nums[i], nums[zeroIndex]) = (nums[zeroIndex], nums[i]);
+                        zeroIndex++;
+                    }
                 }
-            }
-
-            //replace non-zero duplicates starting from nonZeroIndex
-            for (var i = nonZeroIndex; i < nums.Length; i++)
-            {   
-                nums[i] = 0;
+                else
+                {
+                    if (zeroIndex == -1)
+                        zeroIndex = i;
+                }
             }
 
             return nums;
