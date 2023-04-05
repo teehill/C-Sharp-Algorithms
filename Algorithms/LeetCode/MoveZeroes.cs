@@ -6,7 +6,7 @@ namespace Algorithms.LeetCode
     {
         public static int[] MoveZeroesToEnd(int[] nums)
         {
-            var zeroIndex = -1;        
+            var zeroIndex = -1;
 
             for (var i = 0; i < nums.Length; i++)
             {
