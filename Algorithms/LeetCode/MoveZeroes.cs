@@ -6,22 +6,22 @@ namespace Algorithms.LeetCode
     {
         public static int[] MoveZeroesToEnd(int[] nums)
         {
+            var nonZeroIndex = 0;
 
-            var zeroIndex = nums.Length - 1;
-
-            //starting at end, look for last zero, swap it back to zeroIndex, pull up, decremenent zeroIndex
-            for (var i = nums.Length - 1; i >= 0; i--)
+            //move all non-zeroes to front of array, tracked with nonZeroIndex
+            for (var i = 0; i < nums.Length; i++)
             {
-                if (nums[i] == 0)
+                if (nums[i] != 0)
                 {
-                    for (var j = i; j < zeroIndex; j++)
-                    {
-                        //the ol tupel swapperoo
-                        (nums[j], nums[j + 1]) = (nums[j + 1], nums[j]);
-                    }
-
-                    zeroIndex--;
+                    nums[nonZeroIndex] = nums[i];
+                    nonZeroIndex++;
                 }
+            }
+
+            //replace non-zero duplicates starting from nonZeroIndex
+            for (var i = nonZeroIndex; i < nums.Length; i++)
+            {   
+                nums[i] = 0;
             }
 
             return nums;
